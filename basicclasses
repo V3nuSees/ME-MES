@@ -1,0 +1,8 @@
+class Button(object):
+    def __init__(self,x,y,text):
+        self.x=x
+        self.y=y
+        self.text=text
+    def Textl(self,x,y):
+        self.tx=x
+        self.ty=y
