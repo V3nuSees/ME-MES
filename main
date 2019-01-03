@@ -1,0 +1,64 @@
+from classes import Button
+import pygame.freetype
+import random
+import tsk
+import pygame
+pygame.init()
+buttons=[]
+pygame.init()
+spritelist=[]
+swidth=2000
+sheight=1000
+w=pygame.display.set_mode([swidth, sheight])
+top_left=0,0
+top_right=0,swidth
+bottom_left=sheight,0
+bottom_right=sheight,swidth
+WHITE=(255,255,255)
+x=20
+y=100
+ax=800
+ay=200
+satisfyregular=pygame.freetype.Font("Satisfy-Regular.ttf")
+satisfyregular.size=40
+opensanslight=pygame.freetype.Font("OpenSans-Light.ttf")
+opensanslight.size=35
+r=satisfyregular.get_rect("Center Me")
+width=r.width
+height=r.height
+left_edge=.5*swidth-.5*width
+top_edge=.5*sheight-.5*height
+left_edge=.5*swidth-.5*width
+top_edge=.5*sheight-.5*height
+class Object(object):
+    def __init__(self,image,x,y):
+        self.image=image
+        self.x=x
+        self.y=y
+    def change(self,x,y):
+        self.x=x
+        self.y=y
+Startbutton=Button(left_edge-80,top_edge+50,"Start")
+startbutton=tsk.Sprite("EmptyButton.png",Startbutton.x,Startbutton.y)
+startbuttonpressed=tsk.Sprite("EmptyButtonPressed.png",Startbutton.x,Startbutton.y)
+buttons.append(startbutton)
+Startbutton.Textl(startbutton.center_x-35,startbutton.center_y-15)
+
+class Card(object):
+    pass
+while True:
+    w.fill(WHITE)
+    pygame.mouse.set_visible(True)
+    satisfyregular.render_to(w,(left_edge-180,top_edge-50),"Welcome to Shadow Wars")
+    startbutton.draw()
+    opensanslight.render_to(w,(Startbutton.tx,Startbutton.ty),Startbutton.text)
+    mx,my=pygame.mouse.get_pos()
+    for event in pygame.event.get():
+        if event.type==pygame.MOUSEBUTTONDOWN:
+            if pygame.mouse.get_pressed()==(1,0,0):
+                for i in buttons:
+                    while i.rect.collidepoint(mx,my):
+                        startbuttonpressed.draw()
+                        opensanslight.render_to(w,(Startbutton.tx,Startbutton.ty),Startbutton.text)
+                        break
+    pygame.display.flip()
